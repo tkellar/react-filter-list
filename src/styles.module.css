@@ -1,5 +1,9 @@
 /* add css module styles here (optional) */
 
+.Tag:hover {
+  cursor: pointer;
+}
+
 .test {
   margin: 2em;
   padding: 0.5em;

@@ -1,10 +1,54 @@
 import React from 'react'
 
-import { ExampleComponent } from 'react-filter-list'
-import 'react-filter-list/dist/index.css'
+import {
+  FilterList,
+  FilterListSearchBar,
+  FilterListTagGroup,
+  FilterListTag,
+  FilterListHeader
+} from 'react-filter-list'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  const renderFunc = ({name, price, weight}) => (
+    <div className='border rounded'>
+      <div className='text-center bg-primary rounded-top p-3'>
+        <h1>{name}</h1>
+      </div>
+      <div className='pt-3'>
+        <ul>
+          <li>
+            <strong>Price:</strong>
+            {' ' + price}
+          </li>
+          <li>
+            <strong>Weight:</strong>
+            {' ' + weight}
+          </li>
+        </ul>
+      </div>
+    </div>
+  )
+
+  const data = [
+    { name: 'apple', price: '$1.99', weight: '1.2lb', tags: 'red' },
+    { name: 'banana', price: '$0.85', weight: '0.85lb', tags: 'yellow' },
+    { name: 'apple', price: '$1.99', weight: '1.2lb', tags: 'red' },
+    { name: 'banana', price: '$0.85', weight: '0.85lb', tags: 'yellow' },
+    { name: 'apple', price: '$1.99', weight: '1.2lb', tags: 'red' },
+    { name: 'banana', price: '$0.85', weight: '0.85lb', tags: 'yellow' }
+  ]
+
+  return (
+    <FilterList renderComponent={renderFunc} listData={data}>
+      <FilterListHeader>
+        <FilterListSearchBar>Search Here!</FilterListSearchBar>
+        <FilterListTagGroup>
+          <FilterListTag displayName='Red' value='red' />
+          <FilterListTag displayName='Yellow' value='yellow' />
+        </FilterListTagGroup>
+      </FilterListHeader>
+    </FilterList>
+  )
 }
 
 export default App
