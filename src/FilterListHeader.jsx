@@ -6,7 +6,7 @@ const FilterListHeader = (props) => {
   const { children } = props
 
   return (
-    <Row className='FilterListHeader align-items-center px-3 pt-3 pb-2'>
+    <Row className='FilterListHeader align-items-center rounded-top p-3 bg-dark'>
       {children || null}
     </Row>
   )

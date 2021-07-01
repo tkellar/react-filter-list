@@ -30,21 +30,21 @@ const App = () => {
   )
 
   const data = [
-    { name: 'apple', price: '$1.99', weight: '1.2lb', tags: 'red' },
+    { name: 'apple', price: '$1.99', weight: '1.2lb', tags: 'red yellow green' },
     { name: 'banana', price: '$0.85', weight: '0.85lb', tags: 'yellow' },
-    { name: 'apple', price: '$1.99', weight: '1.2lb', tags: 'red' },
-    { name: 'banana', price: '$0.85', weight: '0.85lb', tags: 'yellow' },
-    { name: 'apple', price: '$1.99', weight: '1.2lb', tags: 'red' },
-    { name: 'banana', price: '$0.85', weight: '0.85lb', tags: 'yellow' }
+    { name: 'carrot', price: '$0.92', weight: '1.56lb', tags: 'orange' },
+    { name: 'squash', price: '$2.21', weight: '0.86lb', tags: 'yellow' }
   ]
 
   return (
     <FilterList renderComponent={renderFunc} listData={data}>
       <FilterListHeader>
-        <FilterListSearchBar>Search Here!</FilterListSearchBar>
+        <FilterListSearchBar>What are you looking for?</FilterListSearchBar>
         <FilterListTagGroup>
           <FilterListTag displayName='Red' value='red' />
           <FilterListTag displayName='Yellow' value='yellow' />
+          <FilterListTag displayName='Green' value='green' />
+          <FilterListTag displayName='Orange' value='orange' />
         </FilterListTagGroup>
       </FilterListHeader>
     </FilterList>

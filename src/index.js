@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './styles.module.css'
 
 export { default as FilterListHeader } from './FilterListHeader'
 export { default as FilterListSearchBar } from './FilterListSearchBar'

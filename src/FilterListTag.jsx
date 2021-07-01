@@ -1,6 +1,24 @@
 import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
-import ListContext from './data.context'
+import styled from 'styled-components'
+import ListContext from './context/list.context'
+
+const Span = styled.span`
+  padding: 0.25em 0.75em;
+  border: solid darkgrey 1px;
+  border-radius: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  background-color: ${(props) => (props.selected ? 'grey' : 'transparent')};
+  color: ${(props) => (props.selected ? 'white' : 'darkgrey')};
+  font-size: 80%;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+  }
+`
 
 const FilterListTag = (props) => {
   const { displayName, value } = props
@@ -20,25 +38,10 @@ const FilterListTag = (props) => {
     }))
   }
 
-  const tagStyle = {
-    padding: '0.25em 0.75em',
-    border: 'solid darkgrey 1px',
-    borderRadius: '1rem',
-    textAlign: 'center',
-    whiteSpace: 'nowrap',
-    backgroundColor: state.selected ? 'grey' : 'transparent',
-    color: state.selected ? 'white' : 'black',
-    fontSize: '80%'
-  }
-
   return (
-    <span
-      className='FilterListTag m-1'
-      style={tagStyle}
-      onClick={toggleFilterTag}
-    >
+    <Span className='m-1' onClick={toggleFilterTag} selected={state.selected}>
       {displayName}
-    </span>
+    </Span>
   )
 }
 

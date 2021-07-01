@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { ListContextProvider } from './data.context'
+import { ListContextProvider } from './context/list.context'
 import FilterListDisplay from './FilterListDisplay'
+import * as filters from './helpers/filters'
 import Container from 'react-bootstrap/Container'
 
 const FilterList = (props) => {
@@ -25,9 +26,13 @@ const FilterList = (props) => {
     updateSearchBarEntry: (searchBarEntry) => {
       setState((prevState) => ({
         ...prevState,
-        currentListData: prevState.originalListData.filter((datum) =>
-          datum[`${SEARCH_PROPERTY_NAME}`].includes(searchBarEntry)
-        ),
+        currentListData: prevState.originalListData
+          .filter(
+            filters.searchTermFilter(SEARCH_PROPERTY_NAME, searchBarEntry)
+          )
+          .filter(
+            filters.tagFilter(TAGS_PROPERTY_NAME, prevState.selectedTags)
+          ),
         searchBarEntry: searchBarEntry
       }))
     },
@@ -42,19 +47,16 @@ const FilterList = (props) => {
           currentTags.delete(tagName)
         }
 
-        const pred = (datum) => {
-          const matchesSearchBar = datum[`${SEARCH_PROPERTY_NAME}`].includes(
-            prevState.searchBarEntry
-          )
-          const matchesTags =
-            !currentTags.size || currentTags.has(datum[`${TAGS_PROPERTY_NAME}`])
-
-          return matchesSearchBar && matchesTags
-        }
-
         return {
           ...prevState,
-          currentListData: prevState.originalListData.filter(pred),
+          currentListData: prevState.originalListData
+            .filter(
+              filters.searchTermFilter(
+                SEARCH_PROPERTY_NAME,
+                prevState.searchBarEntry
+              )
+            )
+            .filter(filters.tagFilter(TAGS_PROPERTY_NAME, currentTags)),
           selectedTags: currentTags
         }
       })
@@ -63,7 +65,7 @@ const FilterList = (props) => {
 
   return (
     <ListContextProvider value={state}>
-      <Container className='FilterList border rounded p-3' fluid='lg'>
+      <Container className='FilterList border rounded px-3 pb-3' fluid='lg'>
         {/* Optional header component */}
         {children || null}
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import ListContext from './data.context'
+import ListContext from './context/list.context'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
@@ -20,13 +20,7 @@ const FilterListDisplay = (props) => {
   ))
 
   return (
-    <Row
-      className='FilterListDisplay justify-content-center py-2'
-      xs={1}
-      sm={2}
-      md={3}
-      lg={4}
-    >
+    <Row className='FilterListDisplay pt-3 px-5'>
       {components.length ? components : emptyComponent}
     </Row>
   )
