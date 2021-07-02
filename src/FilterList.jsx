@@ -1,14 +1,27 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import {
+  ThemeContextProvider,
+  darkTheme,
+  lightTheme
+} from './context/theme.context'
 import { ListContextProvider } from './context/list.context'
 import FilterListDisplay from './FilterListDisplay'
 import * as filters from './helpers/filters'
 import Container from 'react-bootstrap/Container'
 
+const ContainerStyled = styled(Container)`
+  background-color: ${({ theme }) => theme.backgroundColor};
+  border: ${({ theme }) => `solid ${theme.borderColor} 1px`};
+  color: ${({ theme }) => theme.searchBoxText};
+`
+
 const FilterList = (props) => {
   const { listData, renderComponent, children } = props
   const SEARCH_PROPERTY_NAME = 'name'
   const TAGS_PROPERTY_NAME = 'tags'
+  const selectedTheme = props.dark ? darkTheme : lightTheme
 
   const [state, setState] = useState({
     // The original set of data provided by the user
@@ -65,13 +78,19 @@ const FilterList = (props) => {
 
   return (
     <ListContextProvider value={state}>
-      <Container className='FilterList border rounded px-3 pb-3' fluid='lg'>
-        {/* Optional header component */}
-        {children || null}
+      <ThemeContextProvider value={selectedTheme}>
+        <ContainerStyled
+          theme={selectedTheme}
+          className='FilterList rounded'
+          fluid='lg'
+        >
+          {/* Optional header component */}
+          {children}
 
-        {/* Internal component for displaying list */}
-        <FilterListDisplay renderComponent={renderComponent} />
-      </Container>
+          {/* Internal component for displaying list */}
+          <FilterListDisplay renderComponent={renderComponent} />
+        </ContainerStyled>
+      </ThemeContextProvider>
     </ListContextProvider>
   )
 }
@@ -79,11 +98,13 @@ const FilterList = (props) => {
 FilterList.propTypes = {
   renderComponent: PropTypes.func.isRequired,
   listData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  children: PropTypes.element
+  children: PropTypes.element,
+  dark: PropTypes.boolean
 }
 
 FilterList.defaultProps = {
-  children: null
+  children: null,
+  dark: false
 }
 
 export default FilterList

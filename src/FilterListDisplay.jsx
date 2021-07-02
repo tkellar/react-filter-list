@@ -20,7 +20,7 @@ const FilterListDisplay = (props) => {
   ))
 
   return (
-    <Row className='FilterListDisplay pt-3 px-5'>
+    <Row className='FilterListDisplay py-3 px-5'>
       {components.length ? components : emptyComponent}
     </Row>
   )

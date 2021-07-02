@@ -6,9 +6,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App-wrapper {
+  min-height: 100vh;
+  padding: 2em;
+  background-color: rgb(32, 32, 32);
+}
+
+.App-wrapper > h1 {
+  text-align: center;
+  margin: 1.5em;
+  color: grey;
 }

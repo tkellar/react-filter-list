@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import ThemeContext from './context/theme.context'
 import Row from 'react-bootstrap/Row'
+
+const RowStyled = styled(Row)`
+  border-bottom: ${({ theme }) => `solid ${theme.borderColor} 1px`};
+`
 
 const FilterListHeader = (props) => {
   const { children } = props
+  const themeContext = useContext(ThemeContext)
 
   return (
-    <Row className='FilterListHeader align-items-center rounded-top p-3 bg-dark'>
-      {children || null}
-    </Row>
+    <RowStyled
+      theme={themeContext}
+      className='FilterListHeader align-items-center rounded-top p-3'
+    >
+      {children}
+    </RowStyled>
   )
 }
 
