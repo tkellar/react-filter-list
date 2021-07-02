@@ -18,9 +18,9 @@ const ContainerStyled = styled(Container)`
 `
 
 const FilterList = (props) => {
-  const { listData, renderComponent, children, theme } = props
-  const SEARCH_PROPERTY_NAME = 'name'
-  const TAGS_PROPERTY_NAME = 'tags'
+  const { listData, renderComponent, children, theme, propertyMap } = props
+  const SEARCH_PROPERTY_NAME = propertyMap?.keywordSearchProperty ?? 'key'
+  const TAGS_PROPERTY_NAME = propertyMap?.tagsListProperty ?? 'tags'
 
   let selectedTheme = null
   if (theme === 'dark') {
@@ -105,6 +105,10 @@ FilterList.propTypes = {
   renderComponent: PropTypes.func.isRequired,
   listData: PropTypes.arrayOf(PropTypes.object).isRequired,
   children: PropTypes.element,
+  propertyMap: PropTypes.shape({
+    keywordSearchProperty: PropTypes.string,
+    tagsListProperty: PropTypes.string
+  }),
   theme: PropTypes.oneOfType([
     PropTypes.oneOf(['light', 'dark']),
     PropTypes.shape({
@@ -116,7 +120,11 @@ FilterList.propTypes = {
 
 FilterList.defaultProps = {
   children: null,
-  theme: 'light'
+  theme: 'light',
+  propertyMap: {
+    keywordSearchProperty: 'key',
+    tagsListProperty: 'tags'
+  }
 }
 
 export default FilterList
