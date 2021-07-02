@@ -11,27 +11,31 @@ const dark2 = '#464e56'
 export const lightTheme = {
   backgroundColor: light,
   borderColor: pattensBlue,
-  searchBoxBackground: white,
-  searchBoxText: dark,
-  searchBoxBorder: pattensBlueDark,
-  tagBorder: pattensBlueDark,
-  tagText: grey,
-  tagTextActive: light,
-  tagBackground: white,
-  tagBackgroundActive: grey
+  headerBackgroundColor: 'initial',
+  headerBorderColor: pattensBlue,
+  searchBoxBackgroundColor: white,
+  searchBoxTextColor: dark,
+  searchBoxBorderColor: pattensBlueDark,
+  tagBorderColor: pattensBlueDark,
+  tagTextColor: grey,
+  tagTextColorActive: light,
+  tagBackgroundColor: white,
+  tagBackgroundColorActive: grey
 }
 
 export const darkTheme = {
   backgroundColor: dark,
   borderColor: dark2,
-  searchBoxBackground: dark2,
-  searchBoxText: pattensBlue,
-  searchBoxBorder: grey,
-  tagBorder: pattensBlueDark,
-  tagText: pattensBlueDark,
-  tagTextActive: dark,
-  tagBackground: dark2,
-  tagBackgroundActive: pattensBlue
+  headerBackgroundColor: 'initial',
+  headerBorderColor: dark2,
+  searchBoxBackgroundColor: dark2,
+  searchBoxTextColor: pattensBlue,
+  searchBoxBorderColor: grey,
+  tagBorderColor: pattensBlueDark,
+  tagTextColor: pattensBlueDark,
+  tagTextColorActive: dark,
+  tagBackgroundColor: dark2,
+  tagBackgroundColorActive: pattensBlue
 }
 
 const ThemeContext = React.createContext(lightTheme)
