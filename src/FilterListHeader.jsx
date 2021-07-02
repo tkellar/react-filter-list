@@ -5,16 +5,17 @@ import ThemeContext from './context/theme.context'
 import Row from 'react-bootstrap/Row'
 
 const RowStyled = styled(Row)`
-  border-bottom: ${({ theme }) => `solid ${theme.borderColor} 1px`};
+  background-color: ${({ theme }) => theme.headerBackgroundColor};
+  border-bottom: ${({ theme }) => `solid ${theme.headerBorderColor} 1px`};
 `
 
 const FilterListHeader = (props) => {
-  const { children } = props
+  const { children, theme } = props
   const themeContext = useContext(ThemeContext)
 
   return (
     <RowStyled
-      theme={themeContext}
+      theme={{ ...themeContext, ...theme }}
       className='FilterListHeader align-items-center rounded-top p-3'
     >
       {children}
@@ -26,11 +27,16 @@ FilterListHeader.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.element
-  ])
+  ]),
+  theme: PropTypes.shape({
+    headerBackgroundColor: PropTypes.string,
+    headerBorderColor: PropTypes.string
+  })
 }
 
 FilterListHeader.defaultValues = {
-  children: null
+  children: null,
+  theme: null
 }
 
 export default FilterListHeader

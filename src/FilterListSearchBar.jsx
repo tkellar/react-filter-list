@@ -8,13 +8,13 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 
 const FormControlStyled = styled(FormControl)`
-  background-color: ${({ theme }) => theme.searchBoxBackground};
-  color: ${({ theme }) => theme.searchBoxText};
-  border: ${({ theme }) => `solid ${theme.searchBoxBorder} 1px`};
+  background-color: ${({ theme }) => theme.searchBoxBackgroundColor};
+  color: ${({ theme }) => theme.searchBoxTextColor};
+  border: ${({ theme }) => `solid ${theme.searchBoxBorderColor} 1px`};
 `
 
 const FilterListSearchBar = (props) => {
-  const { children } = props
+  const { children, theme } = props
 
   const listContext = useContext(ListContext)
   const themeContext = useContext(ThemeContext)
@@ -31,7 +31,7 @@ const FilterListSearchBar = (props) => {
           placeholder={children || 'Search'}
           value={listContext.searchBarValue}
           onChange={handleSearchBarChange}
-          theme={themeContext}
+          theme={{ ...themeContext, ...theme }}
         />
       </InputGroup>
     </Col>
@@ -39,11 +39,17 @@ const FilterListSearchBar = (props) => {
 }
 
 FilterListSearchBar.propTypes = {
-  children: PropTypes.string
+  children: PropTypes.string,
+  theme: PropTypes.shape({
+    searchBoxBackgroundColor: PropTypes.string,
+    searchBoxTextColor: PropTypes.string,
+    searchBoxBorderColor: PropTypes.string
+  })
 }
 
 FilterListSearchBar.defaultValues = {
-  children: 'Search'
+  children: 'Search',
+  theme: null
 }
 
 export default FilterListSearchBar

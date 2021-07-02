@@ -18,10 +18,16 @@ const ContainerStyled = styled(Container)`
 `
 
 const FilterList = (props) => {
-  const { listData, renderComponent, children } = props
+  const { listData, renderComponent, children, theme } = props
   const SEARCH_PROPERTY_NAME = 'name'
   const TAGS_PROPERTY_NAME = 'tags'
-  const selectedTheme = props.dark ? darkTheme : lightTheme
+
+  let selectedTheme = null
+  if (theme === 'dark') {
+    selectedTheme = darkTheme
+  } else {
+    selectedTheme = { ...lightTheme, ...theme }
+  }
 
   const [state, setState] = useState({
     // The original set of data provided by the user
@@ -99,12 +105,18 @@ FilterList.propTypes = {
   renderComponent: PropTypes.func.isRequired,
   listData: PropTypes.arrayOf(PropTypes.object).isRequired,
   children: PropTypes.element,
-  dark: PropTypes.boolean
+  theme: PropTypes.oneOfType([
+    PropTypes.oneOf(['light', 'dark']),
+    PropTypes.shape({
+      backgroundColor: PropTypes.string,
+      borderColor: PropTypes.string
+    })
+  ])
 }
 
 FilterList.defaultProps = {
   children: null,
-  dark: false
+  theme: 'light'
 }
 
 export default FilterList

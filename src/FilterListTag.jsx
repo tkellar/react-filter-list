@@ -11,9 +11,9 @@ const Span = styled.span`
 
   border: solid darkgrey 1px;
   background-color: ${({ theme, selected }) =>
-    selected ? theme.tagBackgroundActive : theme.tagBackground};
+    selected ? theme.tagBackgroundColorActive : theme.tagBackgroundColor};
   color: ${({ theme, selected }) =>
-    selected ? theme.tagTextActive : theme.tagText};
+    selected ? theme.tagTextColorActive : theme.tagTextColor};
 
   padding: var(--padding-y) var(--padding-x);
   font-weight: ${(props) => (props.selected ? 'bold' : 'initial')};
@@ -33,7 +33,7 @@ const Span = styled.span`
 `
 
 const FilterListTag = (props) => {
-  const { displayName, value } = props
+  const { displayName, value, parentTheme, theme } = props
 
   const listContext = useContext(ListContext)
   const themeContext = useContext(ThemeContext)
@@ -55,7 +55,7 @@ const FilterListTag = (props) => {
     <Span
       className='m-1'
       onClick={toggleFilterTag}
-      theme={themeContext}
+      theme={{ ...themeContext, ...parentTheme, ...theme }}
       selected={state.selected}
     >
       {displayName}
@@ -67,17 +67,17 @@ FilterListTag.propTypes = {
   displayName: PropTypes.string.isRequired,
   value: PropTypes.string,
   theme: PropTypes.shape({
-    bgColor: PropTypes.string,
-    bgColorActive: PropTypes.string
+    tagBorderColor: PropTypes.string,
+    tagTextColor: PropTypes.string,
+    tagTextColorActive: PropTypes.string,
+    tagBackgroundColor: PropTypes.string,
+    tagBackgroundColorActive: PropTypes.string
   })
 }
 
 FilterListTag.defaultValues = {
   value: null,
-  theme: {
-    bgColor: 'red',
-    bgColorActive: 'grey'
-  }
+  theme: null
 }
 
 export default FilterListTag
