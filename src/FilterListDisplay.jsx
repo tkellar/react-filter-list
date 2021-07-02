@@ -14,13 +14,13 @@ const FilterListDisplay = (props) => {
     <Col className='mt-3 mx-auto text-center'>No Results</Col>
   )
   const components = currentListData.map((datum) => (
-    <Col className='FilterListItem m-1' key={i++}>
+    <Col className='FilterListItem my-3' key={i++}>
       {renderComponent(datum)}
     </Col>
   ))
 
   return (
-    <Row className='FilterListDisplay py-3 px-5'>
+    <Row xs={1} sm={2} md={3} lg={4} className='FilterListDisplay px-5'>
       {components.length ? components : emptyComponent}
     </Row>
   )
