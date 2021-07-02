@@ -24,7 +24,10 @@ export const tagFilter = (p, t) => {
     if (typeof tags === 'string') {
       tags = tags.split(' ')
     } else if (!Array.isArray(tags)) {
-      throw new Error('Tags property must be of string or array type!')
+      console.warn(
+        'Filtering by tags will only work if the provided data contains a "tags" property or an appropriate mapping in the "propertyMap" prop'
+      )
+      return true
     }
 
     for (let i = 0; i < tags.length; ++i) {

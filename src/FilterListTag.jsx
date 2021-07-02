@@ -16,7 +16,7 @@ const Span = styled.span`
     selected ? theme.tagTextColorActive : theme.tagTextColor};
 
   padding: var(--padding-y) var(--padding-x);
-  font-weight: ${(props) => (props.selected ? 'bold' : 'initial')};
+  font-weight: ${({ selected }) => (selected ? 'bold' : 'initial')};
   border-radius: 1rem;
   text-align: center;
   white-space: nowrap;

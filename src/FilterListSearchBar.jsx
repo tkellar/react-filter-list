@@ -11,6 +11,16 @@ const FormControlStyled = styled(FormControl)`
   background-color: ${({ theme }) => theme.searchBoxBackgroundColor};
   color: ${({ theme }) => theme.searchBoxTextColor};
   border: ${({ theme }) => `solid ${theme.searchBoxBorderColor} 1px`};
+
+  transition: all 0.2s ease-in-out;
+
+  &:focus {
+    background-color: ${({ theme }) => theme.searchBoxBackgroundColor};
+    color: ${({ theme }) => theme.searchBoxTextColor};
+    opacity: 1;
+    box-shadow: ${({ theme }) => `${theme.searchBoxBorderColor} 0 0 8px 0px`};
+    border-color: ${({ theme }) => theme.searchBoxBorderColor};
+  }
 `
 
 const FilterListSearchBar = (props) => {
