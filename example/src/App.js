@@ -9,65 +9,62 @@ import {
   FilterListHeader
 } from 'react-filter-list'
 
+const heroData = [
+  { heroName: 'Superman', superpowers: ['Flying', 'Strength', 'Speed'] },
+  { heroName: 'Spiderman', superpowers: ['Climbing', 'Strength'] },
+  { heroName: 'Aquaman', superpowers: ['Swimming'] },
+  { heroName: 'Batman', superpowers: ['Intelligence', 'Alfred'] },
+  { heroName: 'The Flash', superpowers: ['Speed', 'Intelligence'] }
+]
+
 const App = () => {
-  const renderFunc = ({ name, price, weight }) => (
-    <div className='border rounded'>
-      <div className='text-center bg-primary rounded-top p-3'>
-        <h1>{name}</h1>
+  // The render function is used to generate each list item
+  // based on the data passed to the FilterList component's
+  // 'listData' prop
+  const renderFunc = ({ heroName, superpowers }) => (
+    <div className='border border-secondary rounded bg-light'>
+      <div className='rounded-top bg-primary text-center p-2'>
+        <h1>{heroName}</h1>
       </div>
-      <div className='pt-3'>
-        <ul>
-          <li>
-            <strong>Price:</strong>
-            {' ' + price}
-          </li>
-          <li>
-            <strong>Weight:</strong>
-            {' ' + weight}
-          </li>
+      <div className='p-3'>
+        <strong>Powers:</strong>
+        <ul className='m-0'>
+          {superpowers.map((power) => (
+            <li>{power}</li>
+          ))}
         </ul>
       </div>
     </div>
   )
 
-  const data = [
-    {
-      name: 'apple',
-      price: '$1.99',
-      weight: '1.2lb',
-      tags: 'red yellow green'
-    },
-    { name: 'banana', price: '$0.85', weight: '0.85lb', tags: 'yellow' },
-    { name: 'carrot', price: '$0.92', weight: '1.56lb', tags: 'orange' },
-    { name: 'squash', price: '$2.21', weight: '0.86lb', tags: 'yellow' }
-  ]
+  // By default the search and tag functionality
+  // will look at the 'key' and 'tags' properties
+  // of your data for keyword and tag filtering.
+  // However, these property names can be overridden
+  // with the 'propertyMap' prop (as shown below)
+  const mapping = {
+    keywordSearchProperty: 'heroName',
+    tagsListProperty: 'superpowers'
+  }
 
   return (
-    <div className='App-wrapper'>
-      <h1>Dark Theme</h1>
+    <div className='App p-5'>
+      <h1>Superheros</h1>
 
-      <FilterList dark renderComponent={renderFunc} listData={data}>
+      <FilterList
+        theme='dark'
+        propertyMap={mapping}
+        renderComponent={renderFunc}
+        listData={heroData}
+      >
         <FilterListHeader>
           <FilterListSearchBar>What are you looking for?</FilterListSearchBar>
           <FilterListTagGroup>
-            <FilterListTag displayName='Red' value='red' />
-            <FilterListTag displayName='Yellow' value='yellow' />
-            <FilterListTag displayName='Green' value='green' />
-            <FilterListTag displayName='Orange' value='orange' />
-          </FilterListTagGroup>
-        </FilterListHeader>
-      </FilterList>
-
-      <h1>Light Theme</h1>
-
-      <FilterList renderComponent={renderFunc} listData={data}>
-        <FilterListHeader>
-          <FilterListSearchBar>What are you looking for?</FilterListSearchBar>
-          <FilterListTagGroup>
-            <FilterListTag displayName='Red' value='red' />
-            <FilterListTag displayName='Yellow' value='yellow' />
-            <FilterListTag displayName='Green' value='green' />
-            <FilterListTag displayName='Orange' value='orange' />
+            <FilterListTag displayName='Flying' />
+            <FilterListTag displayName='Strength' />
+            <FilterListTag displayName='Climbing' />
+            <FilterListTag displayName='Swimming' />
+            <FilterListTag displayName='Speed' />
           </FilterListTagGroup>
         </FilterListHeader>
       </FilterList>

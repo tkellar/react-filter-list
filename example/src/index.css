@@ -9,13 +9,12 @@ body {
   background-color: black;
 }
 
-.App-wrapper {
+.App {
   min-height: 100vh;
-  padding: 2em;
   background-color: rgb(32, 32, 32);
 }
 
-.App-wrapper > h1 {
+.App > h1 {
   text-align: center;
   margin: 1.5em;
   color: grey;
