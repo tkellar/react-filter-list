@@ -19,3 +19,9 @@ body {
   margin: 1.5em;
   color: grey;
 }
+
+.heroName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

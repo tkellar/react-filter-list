@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './index.css'
 
 import {
@@ -18,13 +18,18 @@ const heroData = [
 ]
 
 const App = () => {
+  const [state, setState] = useState('dark')
+  const toggleTheme = () => {
+    setState((prevState) => (prevState === 'dark' ? null : 'dark'))
+  }
+
   // The render function is used to generate each list item
   // based on the data passed to the FilterList component's
   // 'listData' prop
   const renderFunc = ({ heroName, superpowers }) => (
     <div className='border border-secondary rounded bg-light'>
       <div className='rounded-top bg-primary text-center p-2'>
-        <h1>{heroName}</h1>
+        <h1 className='heroName'>{heroName}</h1>
       </div>
       <div className='p-3'>
         <strong>Powers:</strong>
@@ -48,11 +53,16 @@ const App = () => {
   }
 
   return (
-    <div className='App p-5'>
-      <h1>Superheros</h1>
+    <div className='App p-5 bg-secondary'>
+      <div className='text-center mb-5'>
+        <h1 className='display-1 text-dark'>Superheros</h1>
+        <button className='btn btn-info' onClick={toggleTheme}>
+          Toggle Light/Dark Theme
+        </button>
+      </div>
 
       <FilterList
-        theme='dark'
+        theme={state}
         propertyMap={mapping}
         renderComponent={renderFunc}
         listData={heroData}
