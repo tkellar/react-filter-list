@@ -38,7 +38,7 @@ const FilterListSearchBar = (props) => {
     <Col className='FilterListSearchBar' xs={12} sm={5} md={3}>
       <InputGroup>
         <FormControlStyled
-          placeholder={children || 'Search'}
+          placeholder={children ?? 'Search'}
           value={listContext.searchBarValue}
           onChange={handleSearchBarChange}
           theme={{ ...themeContext, ...theme }}
