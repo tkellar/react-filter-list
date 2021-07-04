@@ -24,7 +24,8 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "styled-components": "^5.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
@@ -45,7 +46,8 @@
     "prettier": "^2.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "styled-components": "^5.3.0"
   },
   "files": [
     "dist"
@@ -53,7 +55,6 @@
   "dependencies": {
     "bootstrap": "^5.0.2",
     "prop-types": "^15.7.2",
-    "react-bootstrap": "^1.6.1",
-    "styled-components": "^5.3.0"
+    "react-bootstrap": "^1.6.1"
   }
 }
