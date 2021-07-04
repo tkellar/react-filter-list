@@ -51,6 +51,7 @@
     "dist"
   ],
   "dependencies": {
+    "bootstrap": "^5.0.2",
     "prop-types": "^15.7.2",
     "react-bootstrap": "^1.6.1",
     "styled-components": "^5.3.0"
